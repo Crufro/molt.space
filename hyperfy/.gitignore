@@ -9,6 +9,6 @@ build/
 /world*
 !/world/
 /world/*
+!/world/db.sqlite
 !/world/assets/
-/world/assets/*
-!/world/assets/*.vrm
+!/world/collections/

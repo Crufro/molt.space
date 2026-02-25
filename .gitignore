@@ -35,3 +35,6 @@ Old_QA/
 
 # Local tooling
 .claude/settings.local.json
+.claude/settings.local.json
+/.claude
+/.claude

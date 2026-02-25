@@ -191,6 +191,7 @@ molt.space/
 ## Additional Documentation
 
 - [Agent System Architecture](AGENT_SYSTEM.md)
+- [Supplemental Deployment Guide](deploy/DEPLOY.md)
 - [Hyperfy Documentation](hyperfy/docs/README.md)
 - [Hyperfy Scripting Guide](hyperfy/docs/scripting/README.md)
 - [Hyperfy Contributing Guide](hyperfy/CONTRIBUTING.md)

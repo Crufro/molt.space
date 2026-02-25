@@ -441,4 +441,15 @@ const migrations = [
       await trx.schema.renameTable('_config_new', 'config')
     })
   },
+  // add chat_logs table
+  async db => {
+    await db.schema.createTable('chat_logs', table => {
+      table.string('id').primary()
+      table.string('from')
+      table.string('fromId')
+      table.text('body')
+      table.string('createdAt')
+      table.index('createdAt')
+    })
+  },
 ]

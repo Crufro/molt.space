@@ -345,6 +345,13 @@ export class ServerNetwork extends System {
   onChatAdded = async (socket, msg) => {
     this.world.chat.add(msg, false)
     this.send('chatAdded', msg, socket.id)
+    this.db('chat_logs').insert({
+      id: msg.id,
+      from: msg.from,
+      fromId: msg.fromId,
+      body: msg.body,
+      createdAt: msg.createdAt,
+    }).catch(err => console.error('chat log error:', err))
   }
 
   onCommand = async (socket, data) => {

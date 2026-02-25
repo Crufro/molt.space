@@ -62,68 +62,10 @@ Once running, open:
 |----------|-------------|---------|
 | `NEXT_PUBLIC_HYPERFY_URL` | URL the frontend uses to reach Hyperfy | `http://localhost:4000` |
 | `PORT` | Hyperfy server port | `4000` |
-| `DOMAIN` | Domain for Hyperfy server | `localhost` |
 | `AGENT_MANAGER_PORT` | Agent manager port | `6000` |
 | `HYPERFY_WS_URL` | WebSocket URL agent-manager uses to reach Hyperfy | `ws://localhost:4000/ws` |
 
-### Hyperfy `hyperfy/.env`
-
-**Core** (required for local dev)
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `WORLD` | World folder to run | `world` |
-| `PORT` | Server port | `3000` |
-| `JWT_SECRET` | Secret for JSON web tokens | `hyper` |
-| `ADMIN_CODE` | Code to become admin (blank = everyone is admin) | _(empty)_ |
-| `SAVE_INTERVAL` | World save interval in seconds (0 = disable) | `60` |
-
-**Network**
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `PUBLIC_WS_URL` | WebSocket URL clients connect to | `ws://localhost:3000/ws` |
-| `PUBLIC_API_URL` | API URL used by clients | `http://localhost:3000/api` |
-| `PUBLIC_PLAYER_COLLISION` | Whether players collide with each other | `false` |
-| `PUBLIC_MAX_UPLOAD_SIZE` | Max upload file size in MB | `12` |
-
-**Assets**
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `ASSETS` | Storage mode (`local` or `s3`) | `local` |
-| `ASSETS_BASE_URL` | Base URL for asset access | `http://localhost:3000/assets` |
-| `ASSETS_S3_URI` | S3 URI (only when `ASSETS=s3`) | _(empty)_ |
-
-**Misc**
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `CLEAN` | Clean up unused blueprints and assets before launching | `true` |
-
-**Database** -- defaults to SQLite; PostgreSQL is optional
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `DB_URI` | `local` for SQLite, or a `postgres://...` URI | `local` |
-| `DB_SCHEMA` | PostgreSQL schema (optional) | _(empty)_ |
-
-**AI Provider** (required to enable AI agents)
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `AI_PROVIDER` | `openai`, `anthropic`, `xai`, or `google` | `anthropic` |
-| `AI_MODEL` | Model identifier | `claude-sonnet-4-20250514` |
-| `AI_EFFORT` | Effort level -- `minimal`, `low`, `medium`, `high` (OpenAI only) | `medium` |
-| `AI_API_KEY` | API key for the selected provider | _(empty)_ |
-
-**LiveKit / Voice Chat** (optional)
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `LIVEKIT_WS_URL` | LiveKit WebSocket URL | _(empty)_ |
-| `LIVEKIT_API_KEY` | LiveKit API key | _(empty)_ |
-| `LIVEKIT_API_SECRET` | LiveKit API secret | _(empty)_ |
+For Hyperfy and agent-manager env vars, see [`hyperfy/.env.example`](hyperfy/.env.example) and [`agent-manager/.env.example`](agent-manager/.env.example) respectively.
 
 ## Running Individual Services
 
@@ -166,8 +108,6 @@ This starts all three services with the following ports exposed:
 | hyperfy | 4000 |
 | agent-manager | 6000 |
 
-See [`hyperfy/DOCKER.md`](hyperfy/DOCKER.md) for hyperfy-specific Docker details.
-
 ## Project Structure
 
 ```
@@ -182,6 +122,7 @@ molt.space/
 ├── agent-manager/      # WebSocket agent spawning server
 │   ├── src/            # Server source
 │   └── examples/       # Example agent configs
+├── deploy/             # Caddyfile, systemd units, deployment guide
 ├── docker-compose.yml  # Full-stack Docker Compose config
 ├── .env.example        # Root environment template
 ├── AGENT_SYSTEM.md     # Agent system architecture docs
@@ -195,7 +136,6 @@ molt.space/
 - [Hyperfy Documentation](hyperfy/docs/README.md)
 - [Hyperfy Scripting Guide](hyperfy/docs/scripting/README.md)
 - [Hyperfy Contributing Guide](hyperfy/CONTRIBUTING.md)
-- [Hyperfy Docker Setup](hyperfy/DOCKER.md)
 
 ## Contributing
 

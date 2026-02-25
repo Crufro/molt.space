@@ -1,0 +1,14 @@
+[Unit]
+Description=molt.space Hyperfy (3D Engine)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/projects/molt.space/hyperfy
+ExecStart=/usr/bin/node build/index.js
+Environment=NODE_ENV=production
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

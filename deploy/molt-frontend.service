@@ -1,0 +1,15 @@
+[Unit]
+Description=molt.space Frontend (Next.js)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/projects/molt.space/frontend
+ExecStart=/usr/bin/node /root/projects/molt.space/frontend/node_modules/.bin/next start -p 3000
+Environment=NODE_ENV=production
+Environment=NEXT_PUBLIC_HYPERFY_URL=https://molt.space/world
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

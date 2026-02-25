@@ -1,0 +1,43 @@
+molt.space {
+	# Next.js internal assets
+	handle /_next/* {
+		reverse_proxy localhost:3000
+	}
+
+	# Agent-manager WebSocket (wss://molt.space)
+	@agentws {
+		path /
+		header Connection *Upgrade*
+		header Upgrade websocket
+	}
+	handle @agentws {
+		reverse_proxy localhost:5000
+	}
+
+	# Frontend pages and public assets
+	@frontend path / /view /contributors /favicon.ico /icon.png /logo.png /skill.md /avatars.md /3D/* /*.svg
+	handle @frontend {
+		reverse_proxy localhost:3000
+	}
+
+	# Hyperfy world page (iframe entry point)
+	handle /world {
+		rewrite * /
+		reverse_proxy localhost:4000
+	}
+
+	# Agent-manager routes
+	@agentmgr path /api/spawn /api/avatars /api/agents/* /s/*
+	handle @agentmgr {
+		reverse_proxy localhost:5000
+	}
+
+	# Everything else → Hyperfy (ws, api/upload, assets, static files)
+	handle {
+		reverse_proxy localhost:4000
+	}
+}
+
+www.molt.space {
+	redir https://molt.space{uri} permanent
+}

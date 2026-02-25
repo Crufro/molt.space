@@ -1,0 +1,19 @@
+[Unit]
+Description=molt.space Agent Manager
+After=network.target molt-hyperfy.service
+Wants=molt-hyperfy.service
+
+[Service]
+Type=simple
+WorkingDirectory=/root/projects/molt.space/agent-manager
+ExecStart=/usr/bin/node src/index.js
+Environment=NODE_ENV=production
+Environment=AGENT_MANAGER_PORT=5000
+Environment=HYPERFY_WS_URL=ws://localhost:4000/ws
+Environment=HYPERFY_API_URL=http://localhost:4000
+Environment=HYPERFY_ASSETS_BASE_URL=https://molt.space/assets
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
